@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html layout:decorate="~{Main}" lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Biodata</title>
+</head>
+<body>
+<div layout:fragment="content">
+<form method="post" th:object="${biodata}" th:if="!${biodataPresent}">
+    <div class="row">
+        <div class="col">
+            <!-- Name input -->
+            <div class="form-outline">
+                <input type="text" id="form8Example1" class="form-control" th:value="${biodata.user.firstName}" disabled/>
+                <label class="form-label" for="form8Example1">First name</label>
+            </div>
+        </div>
+        <div class="col">
+            <!-- Name input -->
+            <div class="form-outline">
+                <input type="text" id="form8Example2" class="form-control" th:value="${biodata.user.lastName}" disabled/>
+                <label class="form-label" for="form8Example2">Last name</label>
+            </div>
+        </div>
+        <div class="col">
+            <!-- Email input -->
+            <div class="form-outline">
+                <input type="date" id="form8Example3" class="form-control" th:field="*{dateOfBirth}"/>
+                <label class="form-label" for="form8Example3">Date of birth</label>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col">
+            <!-- Name input -->
+            <div class="form-outline">
+                <input type="text" id="form8Example4" class="form-control" th:field="*{nationality}"/>
+                <label class="form-label" for="form8Example4">Nationality</label>
+            </div>
+        </div>
+        <div class="col">
+            <!-- Name input -->
+            <div class="form-outline">
+                <input type="text" id="form8Example9" class="form-control" th:field="*{stateOfOrigin}"/>
+                <label class="form-label" for="form8Example9">State of origin</label>
+            </div>
+        </div>
+        <div class="col">
+            <!-- Email input -->
+            <div class="form-outline">
+                <input type="text" id="form8Example5" class="form-control" th:field="*{localGovernment}"/>
+                <label class="form-label" for="form8Example5">Local government</label>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <!-- Name input -->
+            <div class="form-outline">
+                <input type="text" id="form8Example6" class="form-control" th:field="*{religion}"/>
+                <label class="form-label" for="form8Example6">Religion</label>
+            </div>
+        </div>
+        <div class="col">
+            <!-- Name input -->
+            <div class="form-outline">
+                <input type="text" id="form8Example7" class="form-control" th:field="*{contactNumber}"/>
+                <label class="form-label" for="form8Example7">Contact number</label>
+            </div>
+        </div>
+        <div class="col">
+            <!-- Email input -->
+            <div class="form-outline">
+                <input type="text" id="form8Example0" class="form-control" th:field="*{fathersName}"/>
+                <label class="form-label" for="form8Example0">Father's Name</label>
+            </div>
+        </div>
+        <div class="col">
+            <!-- Email input -->
+            <div class="form-outline">
+                <input type="text" id="form8Example01" class="form-control" th:field="*{mothersName}"/>
+                <label class="form-label" for="form8Example01">Mother's Name</label>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <!-- Name input -->
+            <div class="form-outline">
+                <input type="text" id="form8Example04" class="form-control" th:field="*{nameOfSchool}"/>
+                <label class="form-label" for="form8Example04">Name of school</label>
+            </div>
+        </div>
+        <div class="col">
+            <!-- Name input -->
+            <div class="form-outline">
+                <input type="text" id="form8Example09" class="form-control" th:field="*{schoolClass}"/>
+                <label class="form-label" for="form8Example09">Current year</label>
+            </div>
+        </div>
+        <div class="col">
+            <!-- Email input -->
+            <div class="form-outline">
+                <input type="text" id="form8Example05" class="form-control" th:field="*{schoolAddress}"/>
+                <label class="form-label" for="form8Example05">School address</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+    <div class="alert alert-success" role="alert" th:if="${biodataPresent}">
+        <h4 class="alert-heading">Well done!</h4>
+        <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+        <hr>
+        <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+    </div>
+</div>
+</body>
+</html>

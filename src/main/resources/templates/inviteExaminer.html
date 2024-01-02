@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html layout:decorate="~{Main}" lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Submit File</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+  <div>
+    <h5>Invite Examiner:</h5>
+    Enter the details of the user to be invited below. An link will be sent to their inbox from which they can complete the registration process.
+  </div>
+
+    <form method="post" th:object="${inviteExaminerDto}">
+      <div class="row">
+        <div class="col">
+          <!-- Name input -->
+          <div class="form-outline">
+            <input type="text" id="form8Example1" class="form-control" th:field="*{email}" />
+            <label class="form-label" for="form8Example1">Email</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <!-- Name input -->
+          <div class="form-outline">
+            <input type="text" id="form8Example2" class="form-control" th:field="*{firstName}" />
+            <label class="form-label" for="form8Example2">First Name</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <!-- Email input -->
+          <div class="form-outline">
+            <input type="text" id="form8Example3" class="form-control" th:field="*{lastName}"/>
+            <label class="form-label" for="form8Example3">Last Name</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+  <br />
+
+</div>
+</body>
+</html>

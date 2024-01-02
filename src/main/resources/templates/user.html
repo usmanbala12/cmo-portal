@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html layout:decorate="~{Main}" lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Submit File</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="userDetails">
+    <h4>Basic Details</h4>
+    <p><strong>First Name: </strong><span th:text="${user.firstName}">First Name</span></p>
+    <p><strong>Last Name: </strong><span th:text="${user.lastName}">Last Name</span></p>
+    <p><strong>Email: </strong><span th:text="${user.email}">Email</span></p>
+    <p><strong>User Type: </strong><span th:text="${user.type}">Type</span></p>
+  </div>
+  <br />
+  <div class="candidateBio" th:if="${user.type == T(org.cmo.cmoportal.cmoUser.UserType).CANDIDATE}">
+    <div th:if="${biodata}">
+      <h4>Bio Data</h4>
+      <p><strong>Date of Birth: </strong><span th:text="${biodata.dateOfBirth}">Dob</span></p>
+      <p><strong>Nationality: </strong><span th:text="${biodata.nationality}">nationality</span></p>
+      <p><strong>State of origin: </strong><span th:text="${biodata.stateOfOrigin}">state</span></p>
+      <p><strong>Local Government: </strong><span th:text="${biodata.localGovernment}">lg</span></p>
+      <p><strong>Religion: </strong><span th:text="${biodata.religion}">islam</span></p>
+      <p><strong>Contact Number: </strong><span th:text="${biodata.contactNumber}">contact</span></p>
+      <p><strong>School Name: </strong><span th:text="${biodata.schoolName}">sch name</span></p>
+      <p><strong>School Address: </strong><span th:text="${biodata.schoolAddress}">sch address</span></p>
+      <p><strong>School Class: </strong><span th:text="${biodata.schoolAddress}">class</span></p>
+      <p><strong>Father's Name: </strong><span th:text="${biodata.schoolAddress}">fathers name</span></p>
+      <p><strong>Mother's Name: </strong><span th:text="${biodata.schoolAddress}">mothers name</span></p>
+    </div>
+   <div>
+     <h4>Submissions</h4>
+     <table class="table align-middle mb-0 bg-white">
+       <thead class="bg-light">
+       <tr>
+         <th>Title</th>
+         <th>Submitted On</th>
+         <th>Category</th>
+         <th>View</th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr th:each="submission : ${submissions}">
+         <td th:text="${submission.filename}">FileName</td>
+         <td th:text="${submission.submissionTime}">SubmissionTime</td>
+         <td th:text="${submission.category}">Category</td>
+         <td>
+           <button
+                   type="button"
+                   class="btn btn-link btn-rounded btn-sm fw-bold"
+                   data-mdb-ripple-color="dark"
+           >
+             <a th:href="@{'/submission/' + ${submission.id}}">
+               view
+             </a>
+           </button>
+         </td>
+       </tr>
+
+       </tbody>
+     </table>
+   </div>
+  </div>
+  <div class="candidateBio" th:if="${user.type == T(org.cmo.cmoportal.cmoUser.UserType).EXAMINER}">
+    <div>
+      <h4>Assigned Submissions</h4>
+      <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+        <tr>
+          <th>Title</th>
+          <th>Submitted On</th>
+          <th>Submitted By</th>
+          <th>Category</th>
+          <th>View</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="submission : ${assigned}">
+          <td th:text="${submission.filename}">FileName</td>
+          <td th:text="${submission.submissionTime}">SubmissionTime</td>
+          <td th:text="${submission.owner.firstName}">FirstName</td>
+          <td th:text="${submission.category}">Category</td>
+          <td>
+            <button
+                    type="button"
+                    class="btn btn-link btn-rounded btn-sm fw-bold"
+                    data-mdb-ripple-color="dark"
+            >
+              <a th:href="@{'/submission/' + ${submission.id}}">
+                view
+              </a>
+            </button>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+      <div th:if="${#lists.size(assigned) < 3 }">
+        <h4>Assign Submissions</h4>
+        <select class="browser-default custom-select" th:field="*{toAssign}">
+          <option value="default" selected>Open this select menu</option>
+          <option th:each="submission : ${toAssign}" th:value="${submission.id}" th:text="${submission.fileName}">Option Text</option>
+        </select>
+      </div>
+  </div>
+  <br />
+  <div>
+    <!--Actions disable, delete, etc-->
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html layout:decorate="~{Main}" lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Biodata</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email Address</th>
+      <th>View User</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+      <td th:text="${user.firstName}">FileName</td>
+      <td th:text="${user.lastName}">SubmissionTime</td>
+      <td th:text="${user.email}">FirstName</td>
+      <td>
+        <button
+                type="button"
+                class="btn btn-link btn-rounded btn-sm fw-bold"
+                data-mdb-ripple-color="dark"
+        >
+          <a th:href="@{'/users/' + ${user.id}}">
+            view
+          </a>
+        </button>
+      </td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

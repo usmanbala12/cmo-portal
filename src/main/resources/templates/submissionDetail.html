@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html layout:decorate="~{Main}" lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit File</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="submissionDetails">
+        <p><strong>Title: </strong><span th:text="${submission.filename}">Title</span></p>
+        <p><strong>Submitted On: </strong><span th:text="${submission.submissionTime}">SubmittedOn</span></p>
+        <p><strong>Category: </strong><span th:text="${submission.category}">Category</span></p>
+        <p><strong>View file </strong><a th:href="@{'/submission/file/' + ${submission.fileDriveId}}">view file</a></p>
+    </div>
+    <br />
+    <div class="userDetails">
+        <p><strong>First name: </strong><span th:text="${submission.owner.firstName}">SubmittedBy</span></p>
+        <p><strong>Last name: </strong><span th:text="${submission.owner.lastName}">lastname</span></p>
+        <p><strong>Email: </strong><span th:text="${submission.owner.email}">email</span></p>
+    </div>
+    <br />
+    <div class="gradeDetails">
+        <div th:each="grade : ${grades}">
+            <p><strong>Examiner </strong><span th:text="${grade.examiner.firstName}">GradedBy</span></p>
+            <p><strong>Marks awarded </strong><span th:text="${grade.grade}">Grade</span></p>
+        </div>
+        <p><strong>Total Grade: </strong><span th:text="${totalGrade}">totalGrade</span></p>
+    </div>
+    <div th:if="${#authentication.principal.cmoUser.type == T(org.cmo.cmoportal.cmoUser.UserType).EXAMINER}">
+        <div th:if="${graded}">
+            <span> You have already graded this submission</span>
+        </div>
+        <div class="gradingForm" th:if="${!graded}">
+            <form th:object="${grade}" method="POST" th:action="@{/grade}">
+                <div class="form-outline">
+                    <input th:field="*{grade}" type="number" id="formControlDefault" class="form-control" />
+                    <label class="form-label" for="formControlDefault">Grade</label>
+                </div>
+                <div class="form-outline">
+                    <textarea th:field="*{remark}" class="form-control" id="textAreaExample" rows="3"></textarea>
+                    <label class="form-label" for="textAreaExample">Remark</label>
+                </div>
+                <input hidden="true" th:value="${submission.id}" name="submission"/>
+                <input hidden="true" th:value="${#authentication.principal.cmoUser.id}" name="examiner"/>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

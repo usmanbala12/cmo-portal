@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html layout:decorate="~{Main}" lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit File</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col">
+                    <label class="form-label" for="customFile">Submit exam pdf file</label>
+                    <input type="file" class="form-control" id="customFile" name="pdffile"/>
+            </div>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Submit file</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
